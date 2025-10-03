@@ -1,0 +1,13 @@
+/**
+ * NazaDev PWA - Estilos Principales
+ * Portafolio Tecnológico
+ */
+
+/* Estilos Globales */
+@import './global/index.css';
+@import './global/App.css';
+
+/* Componentes */
+@import './components/SplashScreen.css';
+@import './components/HomeScreen.css';
+@import './components/PWANotifications.css';

@@ -1,0 +1,342 @@
+.home-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  color: #ffffff;
+}
+
+/* Header */
+.app-header {
+  background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 2px 20px rgba(0, 212, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.header-content h1 {
+  margin: 0;
+  color: #00d4ff;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Welcome Section */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.welcome-section h2 {
+  font-size: 2.5rem;
+  color: #00d4ff;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  color: #b8c0c8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Features Section */
+.features-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-card {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.2);
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #00d4ff;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: #b8c0c8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Interactive Section */
+.interactive-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.counter-card {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  min-width: 300px;
+}
+
+.counter-card h3 {
+  color: #00d4ff;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.counter-display {
+  margin-bottom: 2rem;
+}
+
+.counter-value {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #00d4ff;
+  display: inline-block;
+  min-width: 120px;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.counter-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.counter-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 60px;
+}
+
+.counter-btn.decrease {
+  background: #ff6b6b;
+  color: white;
+}
+
+.counter-btn.decrease:hover {
+  background: #ff5252;
+  transform: scale(1.05);
+}
+
+.counter-btn.reset {
+  background: #95a5a6;
+  color: white;
+}
+
+.counter-btn.reset:hover {
+  background: #7f8c8d;
+  transform: scale(1.05);
+}
+
+.counter-btn.increase {
+  background: #51cf66;
+  color: white;
+}
+
+.counter-btn.increase:hover {
+  background: #40c057;
+  transform: scale(1.05);
+}
+
+.counter-btn:active {
+  transform: scale(0.95);
+}
+
+/* Footer */
+.app-footer {
+  background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(0, 212, 255, 0.3);
+  margin-top: auto;
+}
+
+.app-footer p {
+  margin: 0;
+  color: #b8c0c8;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+/* Pantallas extra grandes */
+@media (min-width: 1200px) {
+  .main-content {
+    padding: 6rem 8rem;
+  }
+
+  .header-content {
+    padding: 0 8rem;
+  }
+
+  .features-section {
+    gap: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1600px;
+  }
+
+  .welcome-section h2 {
+    font-size: 3rem;
+  }
+
+  .welcome-section p {
+    font-size: 1.4rem;
+  }
+
+  .feature-card {
+    padding: 3rem;
+  }
+
+  .counter-card {
+    min-width: 400px;
+    padding: 3rem;
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .main-content {
+    padding: 4rem 6rem;
+  }
+
+  .header-content {
+    padding: 0 6rem;
+  }
+
+  .features-section {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 1rem;
+  }
+
+  .header-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .welcome-section h2 {
+    font-size: 2rem;
+  }
+
+  .welcome-section p {
+    font-size: 1rem;
+  }
+
+  .features-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .counter-card {
+    min-width: auto;
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .counter-value {
+    font-size: 3rem;
+  }
+
+  .counter-buttons {
+    gap: 0.5rem;
+  }
+
+  .counter-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .welcome-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .counter-value {
+    font-size: 2.5rem;
+  }
+}

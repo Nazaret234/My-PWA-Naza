@@ -1,0 +1,234 @@
+/* Network Status Indicator Styles */
+
+/* Indicador fijo en la esquina superior derecha */
+.network-status-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid;
+}
+
+.network-status-indicator.online {
+  background: rgba(81, 207, 102, 0.9);
+  border-color: rgba(81, 207, 102, 0.5);
+  color: white;
+}
+
+.network-status-indicator.offline {
+  background: rgba(255, 107, 107, 0.9);
+  border-color: rgba(255, 107, 107, 0.5);
+  color: white;
+  animation: pulse-offline 2s infinite;
+}
+
+.status-icon {
+  font-size: 1rem;
+}
+
+.status-text {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.connection-type {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+/* Animación de pulso para estado offline */
+@keyframes pulse-offline {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+/* Notificación temporal */
+.network-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1001;
+  max-width: 320px;
+  padding: 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  border: 1px solid;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.network-notification.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.network-notification.online {
+  background: rgba(26, 26, 46, 0.95);
+  border-color: rgba(81, 207, 102, 0.5);
+  box-shadow: 0 8px 32px rgba(81, 207, 102, 0.2);
+}
+
+.network-notification.offline {
+  background: rgba(26, 26, 46, 0.95);
+  border-color: rgba(255, 107, 107, 0.5);
+  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.notification-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.notification-text {
+  flex: 1;
+}
+
+.notification-text strong {
+  display: block;
+  color: #00d4ff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.notification-text p {
+  margin: 0;
+  color: #b8c0c8;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .network-status-indicator {
+    top: 15px;
+    right: 15px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .status-icon {
+    font-size: 0.9rem;
+  }
+
+  .connection-type {
+    display: none; /* Ocultar en móviles para ahorrar espacio */
+  }
+
+  .network-notification {
+    top: 60px;
+    right: 15px;
+    left: 15px;
+    max-width: none;
+    padding: 0.8rem;
+  }
+
+  .notification-content {
+    gap: 0.5rem;
+  }
+
+  .notification-icon {
+    font-size: 1.2rem;
+  }
+
+  .notification-text strong {
+    font-size: 0.8rem;
+  }
+
+  .notification-text p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .network-status-indicator {
+    top: 10px;
+    right: 10px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.65rem;
+  }
+
+  .status-icon {
+    font-size: 0.8rem;
+  }
+
+  .network-notification {
+    top: 50px;
+    right: 10px;
+    left: 10px;
+    padding: 0.6rem;
+  }
+}
+
+/* Animaciones adicionales */
+.network-status-indicator:hover {
+  transform: scale(1.05);
+}
+
+.network-notification.online .notification-icon {
+  animation: bounce-in 0.6s ease;
+}
+
+.network-notification.offline .notification-icon {
+  animation: shake 0.6s ease;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(2px);
+  }
+}

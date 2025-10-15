@@ -11,3 +11,10 @@
 @import './components/SplashScreen.css';
 @import './components/HomeScreen.css';
 @import './components/PWANotifications.css';
+@import './components/ActivityForm.css';
+@import './components/BackgroundSyncStatus.css';
+@import './components/ActivityReportForm.css';
+@import './components/ActivityListPage.css';
+@import './components/NetworkStatusIndicator.css';
+@import './components/OfflinePage.css';
+@import './components/PushNotificationManager.css';

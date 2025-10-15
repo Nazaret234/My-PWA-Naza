@@ -24,6 +24,15 @@ export const useServiceWorker = () => {
     // Registrar Service Worker
     const registerSW = async () => {
       try {
+        // Verificar si el archivo sw.js existe antes de registrar
+        const response = await fetch('/sw.js', { method: 'HEAD' });
+        if (!response.ok) {
+          console.warn(
+            'Service Worker no encontrado (/sw.js), saltando registro'
+          );
+          return;
+        }
+
         const registration = await navigator.serviceWorker.register('/sw.js', {
           scope: '/',
         });
@@ -49,8 +58,25 @@ export const useServiceWorker = () => {
 
         // Escuchar mensajes del Service Worker
         navigator.serviceWorker.addEventListener('message', (event) => {
-          if (event.data && event.data.type === 'SW_UPDATE_AVAILABLE') {
-            setState((prev) => ({ ...prev, updateAvailable: true }));
+          const { type, tag, syncedCount, failedCount, totalProcessed, error } =
+            event.data || {};
+
+          switch (type) {
+            case 'SW_UPDATE_AVAILABLE':
+              setState((prev) => ({ ...prev, updateAvailable: true }));
+              break;
+
+            case 'BACKGROUND_SYNC_COMPLETE':
+              console.log(`✅ Background Sync completado: ${tag}`, {
+                syncedCount,
+                failedCount,
+                totalProcessed,
+              });
+              break;
+
+            case 'BACKGROUND_SYNC_ERROR':
+              console.error(`❌ Error en Background Sync: ${tag}`, error);
+              break;
           }
         });
       } catch (error) {

@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build && npm run build-sw",
-    "build-sw": "workbox generateSW workbox-config.cjs",
+    "build-sw": "workbox injectManifest workbox-config.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky install"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
+    "firebase": "^12.4.0",
+    "idb": "^8.0.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

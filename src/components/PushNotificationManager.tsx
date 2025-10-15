@@ -92,26 +92,26 @@ const PushNotificationManager: React.FC<PushNotificationManagerProps> = ({
     }
   };
 
-  const sendTestNotification = () => {
-    if ('serviceWorker' in navigator && 'PushManager' in window) {
-      // Simular una notificación de prueba local
-      navigator.serviceWorker.ready.then((registration) => {
-        registration.showNotification('Notificación de prueba', {
-          body: 'Esta es una notificación de prueba generada localmente',
-          icon: '/icons/icon-192x192.png',
-          badge: '/icons/icon-72x72.png',
-          tag: 'test-notification',
-          requireInteraction: false,
-          actions: [
-            {
-              action: 'open',
-              title: 'Abrir'
-            }
-          ]
-        });
-      });
-    }
-  };
+  // const sendTestNotification = () => {
+  //   if ('serviceWorker' in navigator && 'PushManager' in window) {
+  //     // Simular una notificación de prueba local
+  //     navigator.serviceWorker.ready.then((registration) => {
+  //       registration.showNotification('Notificación de prueba', {
+  //         body: 'Esta es una notificación de prueba generada localmente',
+  //         icon: '/icons/icon-192x192.png',
+  //         badge: '/icons/icon-72x72.png',
+  //         tag: 'test-notification',
+  //         requireInteraction: false,
+  //         actions: [
+  //           {
+  //             action: 'open',
+  //             title: 'Abrir'
+  //           }
+  //         ]
+  //       });
+  //     });
+  //   }
+  // };
 
   return (
     <div className="push-notification-manager">

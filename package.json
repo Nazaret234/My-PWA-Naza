@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && npm run build-sw",
+    "build": "tsc -b && vite build && npm run build-sw && npm run copy-firebase-sw",
     "build-sw": "workbox injectManifest workbox-config.cjs",
+    "copy-firebase-sw": "cp public/firebase-messaging-sw.js dist/",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky install"

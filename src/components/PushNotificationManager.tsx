@@ -92,26 +92,31 @@ const PushNotificationManager: React.FC<PushNotificationManagerProps> = ({
     }
   };
 
-  // const sendTestNotification = () => {
-  //   if ('serviceWorker' in navigator && 'PushManager' in window) {
-  //     // Simular una notificación de prueba local
-  //     navigator.serviceWorker.ready.then((registration) => {
-  //       registration.showNotification('Notificación de prueba', {
-  //         body: 'Esta es una notificación de prueba generada localmente',
-  //         icon: '/icons/icon-192x192.png',
-  //         badge: '/icons/icon-72x72.png',
-  //         tag: 'test-notification',
-  //         requireInteraction: false,
-  //         actions: [
-  //           {
-  //             action: 'open',
-  //             title: 'Abrir'
-  //           }
-  //         ]
-  //       });
-  //     });
-  //   }
-  // };
+  const sendTestNotification = () => {
+    if (!token) {
+      alert('⚠️ Primero debes habilitar las notificaciones para obtener un token');
+      return;
+    }
+
+    if ('serviceWorker' in navigator && 'PushManager' in window) {
+      // Enviar notificación del sistema usando Service Worker
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.showNotification('🧪 Prueba Exitosa', {
+          body: 'Esta es una notificación de prueba local. Las notificaciones reales vendrán desde Firebase.',
+          icon: '/icons/icon-192x192.png',
+          badge: '/icons/icon-72x72.png',
+          tag: 'test-notification',
+          requireInteraction: false,
+          vibrate: [200, 100, 200],
+        }).then(() => {
+          console.log('✅ Notificación de prueba enviada');
+        }).catch((error) => {
+          console.error('❌ Error al enviar notificación:', error);
+          alert('Error al enviar notificación. Verifica los permisos.');
+        });
+      });
+    }
+  };
 
   return (
     <div className="push-notification-manager">
@@ -157,13 +162,13 @@ const PushNotificationManager: React.FC<PushNotificationManagerProps> = ({
           </button>
         ) : (
           <div className="enabled-actions">
-            {/* <button 
+            <button 
               className="notification-button test-button"
               onClick={sendTestNotification}
             >
               <span className="button-icon">🧪</span>
               Probar Notificación
-            </button> */}
+            </button>
             
             <button 
               className="notification-button disable-button"

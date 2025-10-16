@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Asegurar que las variables de entorno se exponen correctamente
+  // // Asegurar que las variables de entorno se exponen correctamente
   define: {
     'import.meta.env.VITE_API_KEY': JSON.stringify(process.env.VITE_API_KEY),
     'import.meta.env.VITE_AUTH_DOMAIN': JSON.stringify(

@@ -92,7 +92,7 @@ export class NotificationService {
       });
 
       if (token) {
-        console.log('✅ Token FCM obtenido:', token);
+        console.log('✅ Token FCM obtenido correctamente');
         this.currentToken = token;
 
         // Guardar el token en localStorage para uso posterior
@@ -119,8 +119,7 @@ export class NotificationService {
     }
 
     onMessage(messaging, (payload) => {
-      console.log('📱 Mensaje recibido en primer plano:', payload);
-      console.log('📋 Payload completo:', JSON.stringify(payload, null, 2));
+      console.log('📱 Mensaje recibido en primer plano');
 
       // Mostrar notificación personalizada
       this.showNotification(payload);
@@ -128,7 +127,7 @@ export class NotificationService {
   }
 
   /**
-   * Muestra una notificación personalizada
+   * Muestra una notificación del sistema (como Slack, Discord, etc.)
    */
   private showNotification(payload: any): void {
     const { notification, data } = payload;
@@ -140,111 +139,37 @@ export class NotificationService {
 
     const title = notification.title || 'Nueva notificación';
     const body = notification.body || '';
+    const icon = notification.icon || '/icons/icon-192x192.png';
+    const image = notification.image;
 
-    console.log('🔔 Mostrando notificación:', { title, body });
+    console.log('🔔 Mostrando notificación del sistema:', { title, body });
 
-    // Mostrar notificación usando Service Worker
+    // Mostrar SOLO notificación del sistema usando Service Worker
     if ('serviceWorker' in navigator && 'PushManager' in window) {
       navigator.serviceWorker.ready
         .then((registration) => {
           return registration.showNotification(title, {
             body: body,
-            icon: '/icons/icon-192x192.png',
+            icon: icon,
             badge: '/icons/icon-72x72.png',
+            image: image,
             tag: 'fcm-notification',
             requireInteraction: false,
+            vibrate: [200, 100, 200], // Patrón de vibración
             data: data || {},
+            // Sonido y comportamiento nativo del sistema
+            silent: false,
           });
         })
         .then(() => {
-          console.log('✅ Notificación mostrada');
+          console.log('✅ Notificación del sistema mostrada');
         })
         .catch((error) => {
           console.error('❌ Error al mostrar notificación:', error);
         });
     }
 
-    // Mostrar notificación in-app adicional
-    this.showInAppNotification(title, body);
-  }
-
-  /**
-   * Muestra una notificación dentro de la aplicación
-   */
-  private showInAppNotification(title: string, body: string): void {
-    // Crear elemento de notificación in-app
-    const notificationElement = document.createElement('div');
-    notificationElement.className = 'push-notification-toast';
-    notificationElement.innerHTML = `
-      <div class="push-notification-content">
-        <div class="push-notification-icon">🔔</div>
-        <div class="push-notification-text">
-          <strong>${title}</strong>
-          <p>${body}</p>
-        </div>
-        <button class="push-notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
-      </div>
-    `;
-
-    // Agregar estilos si no existen
-    if (!document.getElementById('push-notification-styles')) {
-      const styles = document.createElement('style');
-      styles.id = 'push-notification-styles';
-      styles.textContent = `
-        .push-notification-toast {
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          padding: 16px;
-          max-width: 300px;
-          z-index: 10000;
-          animation: slideIn 0.3s ease-out;
-        }
-        .push-notification-content {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-        }
-        .push-notification-icon {
-          font-size: 24px;
-        }
-        .push-notification-text strong {
-          display: block;
-          margin-bottom: 4px;
-          color: #333;
-        }
-        .push-notification-text p {
-          margin: 0;
-          color: #666;
-          font-size: 14px;
-        }
-        .push-notification-close {
-          background: none;
-          border: none;
-          font-size: 18px;
-          cursor: pointer;
-          color: #999;
-        }
-        @keyframes slideIn {
-          from { transform: translateX(100%); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-      `;
-      document.head.appendChild(styles);
-    }
-
-    // Agregar al DOM
-    document.body.appendChild(notificationElement);
-
-    // Auto-remover después de 5 segundos
-    setTimeout(() => {
-      if (notificationElement.parentElement) {
-        notificationElement.remove();
-      }
-    }, 5000);
+    // NO mostrar notificación in-app, solo la del sistema
   }
 
   /**

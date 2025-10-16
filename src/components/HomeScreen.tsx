@@ -73,7 +73,7 @@ const HomeScreen: React.FC = () => {
 
             <PushNotificationManager 
               onTokenReceived={(token) => {
-                console.log('Token FCM recibido:', token);
+                console.log('✅ Token FCM configurado correctamente');
                 // Aquí puedes enviar el token a tu backend si es necesario
               }}
             />

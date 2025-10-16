@@ -28,7 +28,7 @@ const messaging = firebase.messaging();
 
 // Manejar mensajes en background
 messaging.onBackgroundMessage((payload) => {
-  console.log('📱 Mensaje en background recibido:', payload);
+  console.log('📱 Mensaje en background recibido');
 
   const { notification, data } = payload;
 

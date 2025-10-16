@@ -673,7 +673,7 @@ self.addEventListener('push', (event) => {
 
   try {
     const payload = event.data.json();
-    console.log('📱 Datos del push:', payload);
+    console.log('📱 Procesando notificación push');
 
     // Extraer información de la notificación
     const { notification, data } = payload;
